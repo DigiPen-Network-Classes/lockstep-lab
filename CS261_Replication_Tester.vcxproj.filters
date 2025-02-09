@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Foundation">
+      <UniqueIdentifier>{76d3821f-3ab6-4e5e-b4ed-6768a7a77c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input Handling">
+      <UniqueIdentifier>{5dd96d78-b5f3-485f-b766-3af25cc58a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Foundation">
+      <UniqueIdentifier>{c2ab03b4-d37c-492e-a381-99d00adf917f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input Handling">
+      <UniqueIdentifier>{2b2f1d12-09da-47a9-bf93-0619e8a0242c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menu States">
+      <UniqueIdentifier>{b9c5864c-71d9-4fe1-8961-72313f0a0b83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenario States">
+      <UniqueIdentifier>{c878a7e2-1ec8-46f8-9d5b-105ea1b30d7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenario States">
+      <UniqueIdentifier>{0213f9fb-53d9-415f-ab69-1347323a3426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Menu States">
+      <UniqueIdentifier>{642e2c52-56e1-447e-a125-bbea68e0855e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game Objects">
+      <UniqueIdentifier>{9b01a2bc-b1af-4a6d-bc5c-6dec0dbed400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game Objects">
+      <UniqueIdentifier>{58d650c2-024a-4d44-be75-85be87f17ded}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CS261_Replication_Tester.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>Header Files\Menu States</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="PortEntryField.h">
+      <Filter>Header Files\Input Handling</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="DumbClientScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+    <ClInclude Include="LockstepScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkConfiguringState.h">
+      <Filter>Header Files\Menu States</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkConnectingState.h">
+      <Filter>Header Files\Menu States</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkHostingState.h">
+      <Filter>Header Files\Menu States</Filter>
+    </ClInclude>
+    <ClInclude Include="OptimisticScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+    <ClInclude Include="ScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+    <ClInclude Include="SinglePlayerScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files\Foundation</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DoubleOrbitControl.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkedScenarioState.h">
+      <Filter>Header Files\Scenario States</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>Source Files\Menu States</Filter>
+    </ClCompile>
+    <ClCompile Include="CS261_Replication_Tester.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="PortEntryField.cpp">
+      <Filter>Source Files\Input Handling</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="DumbClientScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+    <ClCompile Include="LockstepScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkConfiguringState.cpp">
+      <Filter>Source Files\Menu States</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkConnectingState.cpp">
+      <Filter>Source Files\Menu States</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkHostingState.cpp">
+      <Filter>Source Files\Menu States</Filter>
+    </ClCompile>
+    <ClCompile Include="OptimisticScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+    <ClCompile Include="ScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+    <ClCompile Include="SinglePlayerScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateManager.cpp">
+      <Filter>Source Files\Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="DoubleOrbitControl.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkedScenarioState.cpp">
+      <Filter>Source Files\Scenario States</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CS261_Replication_Tester.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="CS261_Replication_Tester.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

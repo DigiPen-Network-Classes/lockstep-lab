@@ -25,6 +25,7 @@ public:
 	
 private:
     bool HandleSocketError(const char* error_text);
+    void PrintBuffer() const;
 
     DoubleOrbitControl host_control_;
     DoubleOrbitControl non_host_control_;
@@ -33,5 +34,6 @@ private:
     bool isRemotePaused_;
     u_long local_frame_;
     u_long remote_frame_;
-    char buffer_[100];
+    static const int BUF_SIZE = 5;
+    char buffer_[BUF_SIZE];
 };

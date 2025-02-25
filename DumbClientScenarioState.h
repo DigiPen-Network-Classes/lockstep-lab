@@ -33,5 +33,9 @@ private:
     u_long local_frame_;
     u_long remote_frame_;
     bool is_frame_waiting_;
-    char buffer_[100];
+    // both server and client sends 4 bytes for frame number,
+    // server sends 4 * 4 bytes (20 total)
+    // client sends 1 byte ... but both send 20 to keep the code easier to read...
+    static const int BUF_SIZE = 20;
+    char buffer_[BUF_SIZE];
 };

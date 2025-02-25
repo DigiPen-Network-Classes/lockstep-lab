@@ -15,6 +15,7 @@ public:
 protected:
     SOCKET socket_;
     bool is_host_;
+    int GetSocketPort() const;
 };
 
 typedef NetworkedScenarioState* (*NetworkedScenarioStateCreator)(const SOCKET, const bool);

@@ -12,7 +12,7 @@ DumbClientScenarioState::DumbClientScenarioState(const SOCKET socket, const bool
 {
 	local_player_.color = CP_Color_Create(255, 0, 0, 255);
 	remote_player_.color = CP_Color_Create(0, 0, 255, 255);
-	ZeroMemory(buffer_, 100 * sizeof(char));
+	ZeroMemory(buffer_, BUF_SIZE * sizeof(char));
 }
 
 
@@ -54,7 +54,7 @@ void DumbClientScenarioState::Update()
 			remote_player_.SetPosition(remote_control->GetCurrentX(), remote_control->GetCurrentY());
 		}
 		
-		ZeroMemory(buffer_, 100 * sizeof(char));
+		ZeroMemory(buffer_, BUF_SIZE * sizeof(char));
 		auto* write_buffer = buffer_;
 		*reinterpret_cast<u_long*>(write_buffer) = ++local_frame_;
 		write_buffer += sizeof(local_frame_);
@@ -75,14 +75,14 @@ void DumbClientScenarioState::Update()
 			// the non-host only sends their control information (basically the state of SPACE, above)
 			*reinterpret_cast<bool*>(write_buffer) = is_local_paused;
 		}
-		send(socket_, buffer_, 100, 0);
+		send(socket_, buffer_, BUF_SIZE, 0);
 	}
 
 	// if we don't have the matching remote frame yet... check for it on the network
 	// -- or, go ahead, if we're not waiting...
 	if (!is_frame_waiting_ || (remote_frame_ <= local_frame_))
 	{
-		const auto res = recv(socket_, buffer_, 100, 0);
+		const auto res = recv(socket_, buffer_, BUF_SIZE, 0);
 		if (res > 0)
 		{
 			auto* read_buffer = buffer_;
@@ -110,7 +110,6 @@ void DumbClientScenarioState::Update()
 					// non-host only has to update player position when receiving a new packet
 					local_player_.SetPosition(non_host_x, non_host_y);
 					remote_player_.SetPosition(host_x, host_y);
-
 				}
 			}
 		}
@@ -130,7 +129,10 @@ void DumbClientScenarioState::Draw()
 std::string DumbClientScenarioState::GetDescription() const
 {
 	std::string description("DumbClient Scenario, ");
-	description += is_host_ ? "Host, " : "Non-Host, ";
+	description += is_host_ ? "Host(Server), " : "Non-Host(Client), ";
+	description += "Port: ";
+	description += std::to_string(GetSocketPort());
+	description += ", ";
 	description += "Local: ";
 	description += std::to_string(local_frame_);
 	description += ", Remote: ";

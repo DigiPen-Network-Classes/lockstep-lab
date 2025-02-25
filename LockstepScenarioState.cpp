@@ -1,6 +1,7 @@
 #include "LockstepScenarioState.h"
 #include "GameStateManager.h"
-
+#include <iostream>
+#include <iomanip>
 
 LockstepScenarioState::LockstepScenarioState(const SOCKET socket, const bool is_host)
 	: NetworkedScenarioState(socket, is_host),
@@ -12,7 +13,7 @@ LockstepScenarioState::LockstepScenarioState(const SOCKET socket, const bool is_
 {
 	local_player_.color = CP_Color_Create(255, 0, 0, 255);
 	remote_player_.color = CP_Color_Create(0, 0, 255, 255);
-	ZeroMemory(buffer_, 100 * sizeof(char));
+	ZeroMemory(buffer_, BUF_SIZE * sizeof(char));
 }
 
 
@@ -45,19 +46,20 @@ void LockstepScenarioState::Update()
 
 		// increment the frame, and send it as well as the local pause state
 		// -- note, this is symmetric!  "host" doesn't matter...
-		ZeroMemory(buffer_, 100 * sizeof(char));
+		ZeroMemory(buffer_, BUF_SIZE * sizeof(char));
 		auto* write_buffer = buffer_;
 		*reinterpret_cast<u_long*>(write_buffer) = ++local_frame_;
 		write_buffer += sizeof(local_frame_);
 		*reinterpret_cast<bool*>(write_buffer) = is_local_paused;
-		send(socket_, buffer_, 100, 0);
+		PrintBuffer();
+		send(socket_, buffer_, BUF_SIZE, 0);
 	}
 
 	// if we don't have the matching remote frame yet... check for it on the network
 	// TODO: consider if this logic can be improved to handle out-of-order...
 	if (remote_frame_ != local_frame_)
 	{
-		const auto res = recv(socket_, buffer_, 100, 0);
+		const auto res = recv(socket_, buffer_, BUF_SIZE, 0);
 		if (res > 0)
 		{
 			// read in the remote packet for the frame and pause data
@@ -70,6 +72,10 @@ void LockstepScenarioState::Update()
 				remote_frame_ = received_frame;
 				isRemotePaused_ = *reinterpret_cast<bool*>(read_buffer);
 			}
+		}
+		else
+		{
+			HandleSocketError("recv error");
 		}
 	}
 
@@ -91,6 +97,9 @@ std::string LockstepScenarioState::GetDescription() const
 {
 	std::string description("Lockstep Scenario, ");
 	description += is_host_ ? "Host, " : "Non-Host, ";
+	description += "Port: ";
+	description += std::to_string(GetSocketPort());
+	description += ", ";
 	description += "Local: ";
 	description += std::to_string(local_frame_);
 	description += ", Remote: ";
@@ -124,4 +133,20 @@ bool LockstepScenarioState::HandleSocketError(const char* error_text)
 	socket_ = INVALID_SOCKET;
 
 	return true;
+}
+
+
+void LockstepScenarioState::PrintBuffer() const 
+{
+	for (int i = 0; i < BUF_SIZE; i++) 
+	{
+		// convert to unsigned char and then int to deal with negatives
+		std::cout << std::hex << std::setw(2) << std::setfill('0') << static_cast<unsigned int>(static_cast<unsigned char>(buffer_[i])) << " ";
+		if ((i + 1) % 16 == 0) 
+		{
+			// every 16 bytes
+			std::cout << std::endl;
+		}
+	}
+	std::cout << std::dec << std::endl; // reset
 }
